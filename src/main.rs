@@ -2,35 +2,33 @@ use rand::{thread_rng, Rng};
 use std::cmp::Ordering;
 use std::io;
 
-fn get_random_num(start: u8, end: u8) -> u8 {
-    let mut rng = thread_rng().gen_range(start..=end);
-    rng
-}
 fn main() {
-    let random_number = get_random_num(0, 10);
-    println!("enter a number from 0 to 10");
-
-    println!("{}", random_number);
-
+    println!("stating a random number generator");
+    let random_number = generate_random_number(0, 10);
+    println!("guess a random number from 0 to 10");
     loop {
-        let mut user_input = String::new();
+        let mut guess = String::new();
 
         io::stdin()
-            .read_line(&mut user_input)
-            .expect("Failed to read line");
+            .read_line(&mut guess)
+            .expect("failed to guess a random number");
 
-        let user_input: u8 = user_input
+        let guess: i32 = guess
             .trim()
             .parse()
-            .expect("opps cant parse user input");
+            .expect("failed to guess a random number");
 
-        match user_input.cmp(&random_number) {
-            Ordering::Less => println!("sorry to low"),
+        match guess.cmp(&random_number) {
+            Ordering::Less => println!("opp to low bitch"),
             Ordering::Equal => {
-                println!("winner winner chicken dinner");
+                println!("winner winner chicker dinner");
                 break;
             }
-            Ordering::Greater => println!("sorry to high"),
+            Ordering::Greater => println!("too hight bitch"),
         }
     }
+}
+
+fn generate_random_number(start: i32, end: i32) -> i32 {
+    thread_rng().gen_range(start..=end)
 }

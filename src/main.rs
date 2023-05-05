@@ -5,6 +5,7 @@ use std::cmp::Ordering;
 use std::io;
 
 fn play_guessing_game() {
+    println!("guess a number from 1 to 10");
     fn gen_range(start: u32, end: u32, include_end: bool) -> u32 {
         if include_end {
             thread_rng().gen_range(start..=end)
@@ -55,12 +56,39 @@ fn loop_though_week() {
         "Saturday",
     ];
 
-    for day in WEEK.iter() {
+    for day in WEEK {
         println!("day {}", day);
     }
 }
-fn main() {
-    println!("guess a number from 1 to 10");
 
-    play_guessing_game();
+enum Converter {
+    F_to_C,
+    C_to_F,
+}
+
+fn convert_temp(temp: f32, converter: Converter) -> f32 {
+    let temp = match converter {
+        Converter::F_to_C => (temp - 32.0) * 5.0 / 9.0,
+        Converter::C_to_F => (temp * 9.0 / 5.0) + 32.0,
+    };
+    temp
+}
+
+fn generate_nth_fib_numeber(num: usize) -> usize {
+    let result = if num <= 2 {
+        1
+    } else {
+        generate_nth_fib_numeber(num - 1) + generate_nth_fib_numeber(num - 2)
+    };
+    result
+}
+
+fn main() {
+    //play_guessing_game();
+
+    // loop_though_week()
+
+    let t = generate_nth_fib_numeber(6);
+
+    println!("temo is {}", t);
 }

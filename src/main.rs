@@ -62,14 +62,14 @@ fn loop_though_week() {
 }
 
 enum Converter {
-    F_to_C,
-    C_to_F,
+    FToC,
+    CToF,
 }
 
 fn convert_temp(temp: f32, converter: Converter) -> f32 {
     let temp = match converter {
-        Converter::F_to_C => (temp - 32.0) * 5.0 / 9.0,
-        Converter::C_to_F => (temp * 9.0 / 5.0) + 32.0,
+        Converter::FToC => (temp - 32.0) * 5.0 / 9.0,
+        Converter::CToF => (temp * 9.0 / 5.0) + 32.0,
     };
     temp
 }
@@ -88,7 +88,20 @@ fn main() {
 
     // loop_though_week()
 
-    let t = generate_nth_fib_numeber(6);
+    // let t = generate_nth_fib_numeber(6);
 
-    println!("temo is {}", t);
+    // println!("temo is {}", t);
+    let x = hasAZero(51);
+    println!("{}", x)
+}
+
+fn hasAZero(num: isize) -> bool {
+    let number_str = num.to_string();
+
+    for i in 0..number_str.chars().count() {
+        if number_str.chars().nth(i).unwrap() == '0' {
+            return true;
+        }
+    }
+    return false;
 }

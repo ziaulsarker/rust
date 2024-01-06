@@ -92,7 +92,9 @@ fn main() {
 
     // println!("temo is {}", t);
     let x = hasAZero(51);
-    println!("{}", x)
+    println!("{}", x);
+
+    fizz_buzz(15);
 }
 
 fn hasAZero(num: isize) -> bool {
@@ -104,4 +106,18 @@ fn hasAZero(num: isize) -> bool {
         }
     }
     return false;
+}
+
+fn fizz_buzz(num: isize) {
+    for i in 0..=num {
+        if (i % 3 == 0 && i % 5 == 0) {
+            println!("fizz buzz: {}", i)
+        } else if (i % 3 == 0) {
+            println!("fizz: {}", i)
+        } else if (i % 5 == 0) {
+            println!("buzz: {}", i)
+        } else {
+            println!("{}", i)
+        }
+    }
 }
